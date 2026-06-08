@@ -22,12 +22,18 @@ function App() {
   const cuisines = [...new Set(globalRecipes.map((recipe) => recipe.cuisine))];
 
   // Filter recipes based on search text and cuisine selection
-  const filteredRecipes = globalRecipes.filter((recipe) => {
-    const matchesSearch =
-      recipe.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      recipe.ingredients.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredRecipes = (globalRecipes || []).filter((recipe) => {
+    if (!recipe || !recipe.ingredients) return false;
 
-    const matchesCuisine = selectedCuisine === '' || recipe.cuisine === selectedCuisine;
+    // If ingredients is an array, we turn it into a string first
+    const ingredientsString = Array.isArray(recipe.ingredients)
+      ? recipe.ingredients.join(' ')
+      : String(recipe.ingredients);
+
+    const matchesSearch = ingredientsString.toLowerCase().includes((searchQuery || "").toLowerCase());
+
+    const matchesCuisine = !selectedCuisine ||
+      (recipe.cuisine && recipe.cuisine.toLowerCase() === selectedCuisine.toLowerCase());
 
     return matchesSearch && matchesCuisine;
   });
