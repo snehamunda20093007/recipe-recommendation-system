@@ -41,7 +41,7 @@ function App() {
   return (
     <div style={styles.container}>
       <header style={styles.header}>
-        <h1 style={styles.mainTitle}>🍳 Smart Recipe Finder</h1>
+        <h1 style={styles.mainTitle}>🍳 Recipe Recommendation System</h1>
         <p style={styles.subtitle}>Filter by cuisine or ingredients, and view cooking steps instantly!</p>
       </header>
 
@@ -151,15 +151,21 @@ const styles = {
     outline: 'none',
     boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
   },
-  dropdown: {
-    padding: '12px 20px',
-    borderRadius: '30px',
-    border: '1px solid #cbd5e1',
+  dropdownBar: {
+    backgroundColor: '#3b4252', /* Matches your dark search bar */
+    color: '#ffffff',            /* Makes text white and readable */
+    border: 'none',
+    borderRadius: '24px',        /* Rounded design styling */
+    padding: '14px 20px',
     fontSize: '16px',
-    backgroundColor: '#fff',
+    width: '100%',
+    maxWidth: '250px',
+    outline: 'none',
     cursor: 'pointer',
-    outline: 'none'
+    WebkitAppearance: 'none',    /* Cleans default mobile layout bugs */
+    appearance: 'none'
   },
+},
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
